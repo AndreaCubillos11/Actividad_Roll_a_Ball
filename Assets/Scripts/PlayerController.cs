@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,12 +13,11 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem systemParticulas;
     private Vector3 posicion; 
     private AudioSource audioRecoleccion;
-    
-    // Esta es tu variable para el contador
     private int contador = 0; 
-
-    // Aquí puedes definir cuántos cubos necesitas para ganar.
     public int cubosParaGanar = 12;
+    public Text textoContador; 
+    
+
 
     void Start()
     {
@@ -26,12 +26,15 @@ public class PlayerController : MonoBehaviour
         systemParticulas.Stop();
 
         audioRecoleccion = GetComponent<AudioSource> ();
+        
+        textoContador.text = "Contador: " + contador.ToString();
+
     }
     
-    // El método Update y FixedUpdate están correctos
+  
     void Update()
     {
-        // No hay necesidad de código aquí para el contador
+    
     }
 
     void FixedUpdate(){
@@ -47,11 +50,13 @@ public class PlayerController : MonoBehaviour
 
         audioRecoleccion.Play();
 
-        // Aquí se comprueba si el objeto con el que colisionas tiene la etiqueta correcta
+        
         if (other.gameObject.CompareTag("Recolectable"))
         {
-            // Ahora, el contador solo se incrementa si el objeto es recolectable
+            
             contador = contador + 1;
+
+            textoContador.text = "Contador: " + contador.ToString();
 
             posicion = other.gameObject.transform.position;
             particulas.position = posicion;
