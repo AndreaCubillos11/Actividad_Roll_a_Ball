@@ -48,7 +48,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter (Collider other){
 
+   
         audioRecoleccion.Play();
+
+        StartCoroutine (DetenerParticulas (systemParticulas));
 
         
         if (other.gameObject.CompareTag("Recolectable"))
@@ -61,8 +64,8 @@ public class PlayerController : MonoBehaviour
             posicion = other.gameObject.transform.position;
             particulas.position = posicion;
 
-            
             systemParticulas.Play();
+            
 
             other.gameObject.SetActive(false);
 
@@ -77,4 +80,13 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+        public IEnumerator DetenerParticulas(ParticleSystem part){
+
+         yield return new WaitForSecondsRealtime(5);
+
+         part.Stop();
+    }
+
+
 }
