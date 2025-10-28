@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     }
     
-  
+
     void Update()
     {
     
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter (Collider other){
 
-   
+
         audioRecoleccion.Play();
 
         StartCoroutine (DetenerParticulas (systemParticulas));
@@ -83,9 +83,9 @@ public class PlayerController : MonoBehaviour
 
         public IEnumerator DetenerParticulas(ParticleSystem part){
 
-         yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(5);
 
-         part.Stop();
+        part.Stop();
     }
 
 
