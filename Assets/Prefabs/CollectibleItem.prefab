@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2649543286085833916}
   - component: {fileID: 2649543286085833915}
   - component: {fileID: 2649543286085833914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CollectibleItem
   m_TagString: Recolectable
   m_Icon: {fileID: 0}

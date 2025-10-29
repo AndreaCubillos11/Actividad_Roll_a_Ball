@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private int contador = 0; 
     public int cubosParaGanar = 12;
     public Text textoContador; 
+    Animator anim;
+    public GameObject poder;
     
 
 
@@ -29,12 +31,16 @@ public class PlayerController : MonoBehaviour
         
         textoContador.text = "Contador: " + contador.ToString();
 
+        anim = GetComponent<Animator> ();
+
+
     }
     
 
     void Update()
     {
-    
+        if (Input.GetButtonDown ("Fire1"))
+        Animar();  
     }
 
     void FixedUpdate(){
@@ -86,6 +92,21 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(5);
 
         part.Stop();
+    }
+
+    public void Animar(){
+
+        //anim.SetBool ( "animar", true);
+        StartCoroutine(Reiniciar());
+    }
+
+    public IEnumerator Reiniciar(){
+
+        anim.SetBool ("animar", true);
+        yield return new WaitForSecondsRealtime(0.6f);
+        poder.transform.position = transform.position;
+        poder.SendMessage ("Shoot");
+        anim.SetBool("animar", false);
     }
 
 
